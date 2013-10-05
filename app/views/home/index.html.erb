@@ -3,6 +3,7 @@
 <% for campaign in @campaigns %>
 <div class="large-4 columns left">
 	<ul class="pricing-table">
+    <li class="description"><%= image_tag (campaign.image_url) %></li>
   <li class="title"><%= campaign.title %></li>
   <li class="price"><%= campaign.amount.round(2) %> GHS</li>
   <li class="description"><%= campaign.description[0..200] %></li>

@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :amount, :date_due, :description, :status, :title, :organizer_id
+  attr_accessible :amount, :date_due, :description, :status, :title, :organizer_id, :image_url
 
   belongs_to :organizer
   has_many :donations
