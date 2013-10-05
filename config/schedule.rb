@@ -27,6 +27,6 @@ every :reboot do
 	runner "Campaign.check_expiration"
 end
 
-every 1.minutes do
+every 1.minute do
   runner "Campaign.check_expiration"
 end
