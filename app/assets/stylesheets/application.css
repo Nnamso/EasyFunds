@@ -12,3 +12,8 @@
  *= require foundation_and_overrides
  *= require_tree .
  */
+ .bg
+ {
+ 	 background-image: url('bg_metal.jpg');
+ 	 border-bottom:2px solid black;
+ }
