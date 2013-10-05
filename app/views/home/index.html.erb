@@ -1,11 +1,12 @@
  <% provide(:title, 'EasyFunds | Home') %>
 
 <% for campaign in @campaigns %>
+<% amount_raised = campaign.donations.map(&:amount).sum %>
 <div class="large-4 columns left">
 	<ul class="pricing-table">
     <li class="description"><%= image_tag (campaign.image_url) %></li>
   <li class="title"><%= campaign.title %></li>
-  <li class="price"><%= campaign.amount.round(2) %> GHS</li>
+  <li class="price"><%= amount_raised.to_f.to_s + ' / ' + campaign.amount.to_f.round(2).to_s %> GHS</li>
   <li class="description"><%= campaign.description[0..200] + ' ...' %></li>
   <li class="bullet-item">Organized by <%= campaign.organizer.name %></li>
   <li class="bullet-item">Date Due: <%= campaign.date_due.strftime("%d %B %Y") %></li>
