@@ -1,0 +1,70 @@
+ <% provide(:title, 'EasyFunds | Home') %>
+
+<% for campaign in @campaigns %>
+<div class="large-4 columns left">
+	<ul class="pricing-table">
+  <li class="title"><%= campaign.title %></li>
+  <li class="price"><%= campaign.amount.round(2) %> GHS</li>
+  <li class="description"><%= campaign.description[0..200] %></li>
+  <li class="bullet-item">Organized by <%= campaign.organizer.name %></li>
+  <li class="bullet-item">Date Due: <%= campaign.date_due.strftime("%d %B %Y") %></li>
+ 
+  <li class="cta-button"><%= link_to "Support Cause", view_campaign_url(campaign), :class => 'small button' %></li>
+</ul>
+</div>
+<% end %>
+<!--
+<div class="large-4 columns">
+	<ul class="pricing-table">
+  <li class="title">Title</li>
+  <li class="price">100000</li>
+  <li class="description">Description</li>
+  <li class="bullet-item">Organizer Name</li>
+ 
+  <li class="cta-button"><a class="small button" href="#">Support Cause</a></li>
+</ul>
+</div>
+
+<div class="large-4 columns">
+	<ul class="pricing-table">
+  <li class="title">Title</li>
+  <li class="price">100000</li>
+  <li class="description">Description</li>
+  <li class="bullet-item">Organizer Name</li>
+ 
+  <li class="cta-button"><a class="small button" href="#">Support Cause</a></li>
+</ul>
+</div>
+
+<div class="large-4 columns">
+	<ul class="pricing-table">
+  <li class="title">Title</li>
+  <li class="price">100000</li>
+  <li class="description">Description</li>
+  <li class="bullet-item">Organizer Name</li>
+ 
+  <li class="cta-button"><a class="small button" href="#">Support Cause</a></li>
+</ul>
+</div>
+
+<div class="large-4 columns">
+	<ul class="pricing-table">
+  <li class="title">Title</li>
+  <li class="price">100000</li>
+  <li class="description">Description</li>
+  <li class="bullet-item">Organizer Name</li>
+ 
+  <li class="cta-button"><a class="small button" href="#">Support Cause</a></li>
+</ul>
+</div>
+
+<div class="large-4 columns">
+	<ul class="pricing-table">
+  <li class="title">Title</li>
+  <li class="price">100000</li>
+  <li class="description">Description</li>
+  <li class="bullet-item">Organizer Name</li>
+ 
+  <li class="cta-button"><a class="small button" href="#">Support Cause</a></li>
+</ul>
+</div>-->

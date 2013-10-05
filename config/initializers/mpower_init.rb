@@ -1,0 +1,10 @@
+MPower::Setup.master_key = "a4fd0c97-761f-416f-9312-9555881988fe"
+MPower::Setup.public_key = "test_public_mxIoOXIbAt0t94K1VeHFheSygNQ"
+MPower::Setup.private_key = "test_private_01yMn-AocFMmUV_qRsBmNVqwA-U"
+MPower::Setup.mode = "test"
+MPower::Setup.token = "e9b17c87bd920ce4bf77"
+
+MPower::Checkout::Store.name = "Easy Funds"
+MPower::Checkout::Store.tagline = "Support causes you care about!"
+#MPower::Checkout::Store.postal_address = "Post office Box AN 10604"
+MPower::Checkout::Store.phone_number = "0242510831"

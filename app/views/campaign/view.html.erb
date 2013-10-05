@@ -1,0 +1,25 @@
+ <% provide(:title, 'EasyFunds | ' + @campaign.title) %>
+
+ <div class="row">
+ 	<div class="large-6 columns">
+ 		<%= image_tag "http://placehold.it/600x400" %>
+ 	</div>
+ 	<div class="large-6 columns">
+ 		<h4><%= @campaign.title %></h4>
+ 		<p><%= @campaign.description %></p>
+ 	</div>
+ </div>
+ <br /><hr />
+ <div class="row">
+ 	<div class="large-6 columns">
+ 		<!-- raised amount / target amount goes here -->
+ 		<h3><%= @campaign.total_donations %> GHS raised out of <%= @campaign.amount %> GHS</h3>
+ 	</div>
+ 	<div class="large-6 columns">
+ 		<%= simple_form_for @donation, :url => request_checkout_url do |f| %>
+  <%= f.input :amount, :label => false, :placeholder => "Enter an amount here"  %>
+  <%= f.button :submit %>
+<% end %>
+ 	</div>
+ 	
+ </div>
