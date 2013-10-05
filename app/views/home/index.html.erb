@@ -6,7 +6,7 @@
     <li class="description"><%= image_tag (campaign.image_url) %></li>
   <li class="title"><%= campaign.title %></li>
   <li class="price"><%= campaign.amount.round(2) %> GHS</li>
-  <li class="description"><%= campaign.description[0..200] %></li>
+  <li class="description"><%= campaign.description[0..200] + ' ...' %></li>
   <li class="bullet-item">Organized by <%= campaign.organizer.name %></li>
   <li class="bullet-item">Date Due: <%= campaign.date_due.strftime("%d %B %Y") %></li>
  

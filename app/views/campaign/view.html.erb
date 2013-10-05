@@ -5,8 +5,32 @@
  		<%= image_tag @campaign.image_url, :style => "border:1px solid silver;" %>
  	</div>
  	<div class="large-6 columns">
- 		<h4><%= @campaign.title %></h4>
+ 		
+ 		
+
+ 		
+ 		
+
+		<div class="section-container auto" data-section>
+  <section class="active">
+    <p class="title" data-section-title><a href="#panel1">Description</a></p>
+    <div class="content" data-section-content>
+     <h4><%= @campaign.title %></h4>
  		<p><%= @campaign.description %></p>
+
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#panel2">Organizer</a></p>
+    <div class="content" data-section-content>
+    <p>Name: <%= @campaign.organizer.name %><br />
+ 		Address: <%= @campaign.organizer.address %><br />
+ 		Email: <%= @campaign.organizer.email %><br />
+		Phone: <%= @campaign.organizer.phone %></p>
+    </div>
+  </section>
+</div>
+
  	</div>
  </div>
  <br /><hr />
@@ -18,7 +42,7 @@
  	<div class="large-6 columns">
  		<%= simple_form_for @donation, :url => request_checkout_url do |f| %>
   <%= f.input :amount, :label => false, :placeholder => "Enter an amount here"  %>
-  <%= f.button :submit %>
+  <%= f.submit "Donate", :class => "button" %>
 <% end %>
  	</div>
  	
