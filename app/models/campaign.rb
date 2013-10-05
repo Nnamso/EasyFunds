@@ -10,11 +10,14 @@ class Campaign < ActiveRecord::Base
   	self.donations.map(&:amount).sum.to_f
   end
 
-  def check_expiration
-  	if self.status == false && self.date_due  <= DateTime.now
-  		self.status = true
-  		self.save
-  	end
+  def self.check_expiration
+    campaign = where(status: false)
+    campaign.each do |campaign|
+      if campaign.date_due  <= DateTime.now
+        campaign.status = true
+        campaign.save
+    end
+    end
   end
 
   def perform_transfers
@@ -59,21 +62,18 @@ class Campaign < ActiveRecord::Base
                 if (direct_pay.credit_account(donation.mpower_email,donation.amount.to_f))
                     SmsghSms.push(:to => donation.mpower_phone, :msg => "Hello " + donation.name + ", Thank you for your donation to support " + donation.campaign.title + ". The total amount raised was " + amount_raised.to_f.to_s + " GHS.")
                 else
-                #puts direct_pay.description
-                #puts direct_pay.response_text
+              
                 end
             end
           else
-            #puts direct_pay.description
-            #puts direct_pay.response_text
+
           end
 
        
         end
 
-        #send to organizer
-
     end
   end
+  handle_asynchronously :perform_transfers
 
 end

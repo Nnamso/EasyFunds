@@ -19,10 +19,14 @@
 
 # Learn more: http://github.com/javan/whenever
 
+set :environment, 'development'
+
+set :output, '/Users/edemkumodzi/Documents/Projects/Rails/Professional/EasyFunds/log/cron_log.log'
+
 every :reboot do
 	runner "Campaign.check_expiration"
 end
 
-every 1.day, :at => '1:42 pm' do
+every 1.minutes do
   runner "Campaign.check_expiration"
 end

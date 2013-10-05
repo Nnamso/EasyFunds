@@ -39,6 +39,12 @@ gem 'whenever', :require => false
 
 gem 'smsgh_sms'
 
+gem 'passenger'
+
+gem 'foreman'
+
+gem 'delayed_job_active_record'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
