@@ -6,39 +6,14 @@
 <!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
   <head>
-  	<meta charset="utf-8" />
-
-  	<!-- Uncomment to make IE8 render like IE7 -->
-  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
-
-  	<!-- Set the viewport width to device width for mobile -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-
-  	<%= stylesheet_link_tag    "application" %>
-  	<%= javascript_include_tag "vendor/custom.modernizr" %>
-    <%= csrf_meta_tags %>
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  	<%= render 'shared/head' %>
   </head>
 
   <body>
 		
 
-		<div class="bg">
-      <div class="row">
-        <div class="large-3 columns large-centered">
-        	<br />
-            <%= link_to (image_tag "logo.png"), root_url %>
-          <br />
-        </div>
-        <br />
-        <div class="large-10 columns large-centered">
-         <h6 style="text-align:center;font-weight:bold;">SUPPORT CAUSES YOU CARE ABOUT!</h6>
-          <p style="text-align:center; font-size:14px;">EasyFunds allows you to find and support causes that matters to you. From social fundraisers to kickstarter campaigns, there are a variety of causes to support.</p>
-        </div>
-    </div>
-    </div>
+		<%= render 'shared/banner' %>
+
     <% if flash[:notice] %>
 			<div data-alert class="alert-box success" style="text-align:center;">
   					<%= flash[:notice] %>
