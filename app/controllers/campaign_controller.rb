@@ -16,7 +16,7 @@ class CampaignController < ApplicationController
 
   		invoice.add_item(@donation.campaign.title,1,@donation.amount,@donation.amount);
 
-  		invoice.description = "Donation to support" + @donation.campaign.title;
+  		invoice.description = "Donation to support " + @donation.campaign.title;
 
   		invoice.total_amount = @donation.amount.to_f
 
@@ -27,7 +27,7 @@ class CampaignController < ApplicationController
   		if invoice.create
   			#puts invoice.status
   			#puts invoice.response_text
-  			# you may want to do "redirect_to invoice.invoice_url" in a Rails controller
+  			# you may want to do "redirect_to invoice.invoice_url" in a Rails controllerwwwwww
   			redirect_to invoice.invoice_url
 		else
   			#puts invoice.status
