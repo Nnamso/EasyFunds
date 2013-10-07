@@ -20,6 +20,16 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def final_ratio
+    ratio = (self.total_donations*100 / self.amount)
+
+    if ratio > 100
+      ratio = 100
+    end
+
+    ratio
+  end
+
   def perform_transfers
     if (self.status == true)
       direct_pay = MPower::DirectPay.new

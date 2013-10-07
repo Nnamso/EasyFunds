@@ -1,15 +1,14 @@
  <% provide(:title, 'EasyFunds | Home') %>
 
 <% for campaign in @campaigns %>
-<% amount_raised = campaign.donations.map(&:amount).sum %>
+
 <div class="large-4 columns left">
 	<ul class="pricing-table">
-    <li class="description"><%= image_tag (campaign.image_url) %></li>
+    <li class="description"><%= link_to (image_tag (campaign.image_url)), view_campaign_url(campaign) %></li>
   <li class="title"><%= campaign.title %></li>
-  <li class="price"><%= amount_raised.to_f.to_s + ' out of ' + campaign.amount.to_f.round(2).to_s %> GHS</li>
+   <li class="description"><div class="progress success round"><%= "<span class='meter' style='width:".html_safe + campaign.final_ratio.to_f.to_s + "%'></span>".html_safe %></div></li>
   <li class="bullet-item">Date Due: <%= campaign.date_due.strftime("%d %B %Y") %></li>
  
-  <li class="cta-button"><%= link_to "Support Cause", view_campaign_url(campaign), :class => 'small button' %></li>
 </ul>
 </div>
 <% end %>
