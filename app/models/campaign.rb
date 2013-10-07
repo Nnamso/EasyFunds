@@ -28,43 +28,25 @@ class Campaign < ActiveRecord::Base
 
       direct_pay = MPower::DirectPay.new
 
-      org_message = ""
+      self.donations.each do |donation|
 
-      if amount_raised < amount
-
-
-        self.donations.each do |donation|
-          #pay back donors
+        if amount_raised < amount
 
           direct_pay.credit_account(donation.mpower_email,donation.amount.to_f)
           SmsghSms.push(:to => donation.mpower_phone, :msg => "Hello " + donation.name + ", Unfortunately, the target for " + donation.campaign.title + " wasn't reached. " + donation.amount.to_f.to_s + " GHS was refunded back to your MPower account.")
 
-          
-        end
-
-        org_message = "Hello " + donation.campaign.organizer.name + ", Unfortunately, the target for " + donation.campaign.title + " wasn't reached. " + amount_raised.to_f.to_s + "GHS out of " + donation.campaign.amount.to_f.to_s + " was raised and all donors were refunded."
-
-        SmsghSms.push(:to => donation.campaign.organizer.phone, :msg => org_message)
-
-      else
-
-        direct_pay.credit_account(self.organizer.email,amount_raised.to_f)
-
-        org_message = "Hello " + self.organizer.name + ", Congratulations, the target for " + self.title + " was reached. " + amount_raised.to_f.to_s + "GHS  was raised in total and your MPower was credited with the amount raised."
-
-        SmsghSms.push(:to => self.organizer.phone, :msg => org_message)
-
-
-
-        self.donations.each do |donation|
+        else
 
           direct_pay.credit_account(donation.mpower_email,donation.amount.to_f)
           SmsghSms.push(:to => donation.mpower_phone, :msg => "Hello " + donation.name + ", Thank you for your donation to support " + donation.campaign.title + ". The total amount raised was " + amount_raised.to_f.to_s + " GHS.")
 
         end
 
+      end
 
-
+      if amount_raised < amount
+        
+        SmsghSms.push(:to => donation.campaign.organizer.phone, :msg => "Hello " + donation.campaign.organizer.name + ", Unfortunately, the target for " + donation.campaign.title + " wasn't reached. " + amount_raised.to_f.to_s + "GHS out of " + donation.campaign.amount.to_f.to_s + " was raised and all donors were refunded.")
 
       end
 
