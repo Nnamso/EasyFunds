@@ -27,11 +27,10 @@ class Campaign < ActiveRecord::Base
 
       self.donations.each do |donation|
 
+        direct_pay.credit_account(donation.mpower_email,donation.amount.to_f)
         if self.total_donations < amount
-          direct_pay.credit_account(donation.mpower_email,donation.amount.to_f)
           SmsghSms.push(:to => donation.mpower_phone, :msg => "Hello " + donation.name + ", Unfortunately, the target for " + donation.campaign.title + " wasn't reached. " + donation.amount.to_f.to_s + " GHS was refunded back to your MPower account.")
         else
-          direct_pay.credit_account(donation.mpower_email,donation.amount.to_f)
           SmsghSms.push(:to => donation.mpower_phone, :msg => "Hello " + donation.name + ", Thank you for your donation to support " + donation.campaign.title + ". The total amount raised was " + self.total_donations.to_f.to_s + " GHS.")
         end
 
