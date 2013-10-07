@@ -21,16 +21,18 @@
 			</div>
 
 		<% end %>
-	<br />
-  
+	
+  <div class="bg">    
     <div class="row">
-      <div class="large-12 columns" style="min-height:500px;">
+      <div class="large-12 columns">
          <!-- campaign runinng goes here --><br />
           <%= yield %>
       </div>
      
     </div>
-	<div class="bg" style="border-top:2px solid black;">
+    </div>
+
+	<!--<div class="bg" style="border-top:2px solid black;">
     <div class="row">
       <div class="large-12 columns">
       	<br />
@@ -47,18 +49,8 @@
         <p style="text-align:center;">When a campaign target is not reached, all donors are refunded with the amount they donated.</p>
       </div>
     </div>
-    </div>
+    </div>-->
 
-    <div style="background-color:black;;">
-    <div class="row">
-      <div class="large-12 columns">
-       <p style="font-size:12px; text-align:center; color:white;margin-top:10px;">All Rights Reserved &copy; EasyFunds | MPower Hackathon</p>
-      </div>
-    </div>
-    </div>
-
-
-    
-    <%= javascript_include_tag "application" %>
+   <%= render 'shared/footer' %>
   </body>
 </html>
