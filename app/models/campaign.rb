@@ -31,15 +31,15 @@ class Campaign < ActiveRecord::Base
       org_message = ""
 
       if amount_raised < amount
-       
 
-        for donation in self.donations
+
+        self.donations.each do |donation|
           #pay back donors
 
-          if (direct_pay.credit_account(donation.mpower_email,donation.amount.to_f))
-            SmsghSms.push(:to => donation.mpower_phone, :msg => "Hello " + donation.name + ", Unfortunately, the target for " + donation.campaign.title + " wasn't reached. " + donation.amount.to_f.to_s + " GHS was refunded back to your MPower account.")
+          direct_pay.credit_account(donation.mpower_email,donation.amount.to_f)
+          SmsghSms.push(:to => donation.mpower_phone, :msg => "Hello " + donation.name + ", Unfortunately, the target for " + donation.campaign.title + " wasn't reached. " + donation.amount.to_f.to_s + " GHS was refunded back to your MPower account.")
 
-          end
+          
         end
 
         org_message = "Hello " + donation.campaign.organizer.name + ", Unfortunately, the target for " + donation.campaign.title + " wasn't reached. " + amount_raised.to_f.to_s + "GHS out of " + donation.campaign.amount.to_f.to_s + " was raised and all donors were refunded."
@@ -48,23 +48,22 @@ class Campaign < ActiveRecord::Base
 
       else
 
-        if (direct_pay.credit_account(self.organizer.email,amount_raised.to_f))
+        direct_pay.credit_account(self.organizer.email,amount_raised.to_f)
 
-          org_message = "Hello " + self.organizer.name + ", Congratulations, the target for " + self.title + " was reached. " + amount_raised.to_f.to_s + "GHS  was raised in total and your MPower was credited with the amount raised."
+        org_message = "Hello " + self.organizer.name + ", Congratulations, the target for " + self.title + " was reached. " + amount_raised.to_f.to_s + "GHS  was raised in total and your MPower was credited with the amount raised."
 
-          SmsghSms.push(:to => self.organizer.phone, :msg => org_message)
+        SmsghSms.push(:to => self.organizer.phone, :msg => org_message)
 
 
 
-          for donation in self.donations
-            #pay back donors
+        self.donations.each do |donation|
 
-            if (direct_pay.credit_account(donation.mpower_email,donation.amount.to_f))
-              SmsghSms.push(:to => donation.mpower_phone, :msg => "Hello " + donation.name + ", Thank you for your donation to support " + donation.campaign.title + ". The total amount raised was " + amount_raised.to_f.to_s + " GHS.")
-            end
-          end
+          direct_pay.credit_account(donation.mpower_email,donation.amount.to_f)
+          SmsghSms.push(:to => donation.mpower_phone, :msg => "Hello " + donation.name + ", Thank you for your donation to support " + donation.campaign.title + ". The total amount raised was " + amount_raised.to_f.to_s + " GHS.")
 
         end
+
+
 
 
       end
