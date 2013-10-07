@@ -21,7 +21,6 @@ class Campaign < ActiveRecord::Base
   end
 
   def perform_transfers
-    puts "perform transfer"
     if (self.status == true)
       direct_pay = MPower::DirectPay.new
 
