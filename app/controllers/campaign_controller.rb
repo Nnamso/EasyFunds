@@ -22,6 +22,7 @@ class CampaignController < ApplicationController
       redirect_to invoice.invoice_url
 
     else
+      @campaign = Campaign.find(params[:id])
       render 'view'
     end
   end

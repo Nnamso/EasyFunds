@@ -16,3 +16,5 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$('#donation_amount').regexMask("float-ptbr");
